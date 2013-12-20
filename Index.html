@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html ng-app="myApp">
+  <head>
+    <title>Project Update - Round-Robin Timer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="main.js"></script>
+  </head>
+  <body  ng-controller='TimerController'>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Project Update - Round-Robin Timer</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right" role="form">
+                    <div class="form-group">
+                      <input type="text" class="form-control" size="3" ng-model="timespan">
+                    </div>
+                    <button type="submit" class="btn btn-warning" ng-click="pauseTimer()" ng-show="!timerPaused">Pause Timer</button>
+                    <button type="submit" class="btn btn-success" ng-click="resumeTimer()" ng-show="timerPaused">Resume Timer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container contentarea">
+        <div class="row" ng-controller='ItemsController'>
+           <div class="col-md-2">
+                <div>
+                    <ul class="nav bs-sidenav">
+                      <li ng-repeat="item in itemsCol1" ng-class="{'current-item': $index == curruntIndex}"><a href="#" ng-click="jumpTo($index)">{{ item.name }} </a></li>
+                    </ul>
+                </div>
+            </div>
+           <div class="col-md-2">
+                <div>
+                    <ul class="nav bs-sidenav">
+                      <li ng-repeat="item in itemsCol2" ng-class="{'current-item': $index == (curruntIndex - itemsCol1.length)}"><a href="#" ng-click="jumpTo($index + itemsCol1.length)">{{ item.name }} </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                  <h1 class="countdown" ng-class="{'red-text': countdown < 10}">{{countdown}}</h1>
+                </div>
+                <div class="row">
+                    <div style="width: 50%; margin: 0 auto; font-size: 17px">
+                      <dl class="dl-horizontal">
+                        <dt>Project Name</dt>
+                        <dd>{{ items[curruntIndex].name }}</dd>
+                        <dt>Resource Rep</dt>
+                        <dd>{{ items[curruntIndex].rep }}</dd>
+                        <dt>Members</dt>
+                        <dd ng-repeat="member in items[curruntIndex].members"> {{ member }} </dd>
+                      </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+  </body>
+</html>

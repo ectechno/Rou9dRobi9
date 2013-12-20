@@ -1,0 +1,19 @@
+﻿body {
+}
+
+.contentarea {
+    margin-top: 70px;
+}
+
+.countdown {
+    font-size:300px;
+    text-align:center;
+}
+
+.current-item {
+    background-color: lightgray;
+}
+
+.red-text {
+    color: red;
+}
