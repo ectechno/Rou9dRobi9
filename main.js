@@ -18,7 +18,7 @@ app.controller('ItemsController', function ($scope, $rootScope, $http) {
 
     $http({
         method: 'GET',
-        //url: 'http://99xtechnology.lk/services/api/Projects',
+        //url: 'http://99xt.lk/services/api/Projects',
         url: 'projects.js'
     }).success(function (data, status) {
         $scope.items = data;
